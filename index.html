@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="從郊外走進北宋汴京。滑動原畫長卷、尋找六處細節，再挑戰眼力小試。">
+  <meta name="theme-color" content="#f4efe3">
+  <title>趣解清明上河圖｜汴京漫遊</title>
+  <link rel="icon" href="./assets/seal.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要內容</a>
+  <header class="mast">
+    <div class="shell mast-row">
+      <a class="brand" href="#top" aria-label="汴京漫遊，回到首頁"><img src="./assets/seal.svg" width="38" height="38" alt=""><span>汴京漫遊<small>BIANJING · DIGITAL EXHIBIT</small></span></a>
+      <nav aria-label="主選單"><a href="#explore">展卷探索</a><a href="#stories">畫裡故事</a><a href="#quiz">眼力小試</a></nav>
+      <span class="mast-edition">數位小展 <span>・</span> 卷一</span>
+    </div>
+  </header>
+  <main id="main">
+    <section id="top" class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> 線上特展 <b>01</b> <i></i> THE SONG SCROLL</p>
+        <h1 id="hero-title"><span>趣解</span><br>清明上河圖</h1>
+        <p class="hero-deck">沿著一條河，走進千年前的城市日常。</p>
+        <p class="hero-desc">從城郊小路到汴河虹橋，再到人聲鼎沸的街市。這一次，讓我們像宋人展卷一樣，從右往左，慢慢看。</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#explore">展開長卷 <span aria-hidden="true">↘</span></a>
+          <a class="text-link" href="#stories">先讀畫裡故事 <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <figure class="hero-art">
+        <div class="plate"><img src="./assets/hero-bridge.webp" alt="張擇端清明上河圖局部，拱形虹橋橫跨汴河，行人和船隻在橋邊聚集" width="1320" height="695" fetchpriority="high"><span class="art-tag" aria-hidden="true">虹橋一景</span></div>
+        <figcaption><span><b>圖 01</b>　北宋 · 張擇端《清明上河圖》局部</span><span>虹橋 / 汴河</span></figcaption>
+      </figure>
+    </section>
+    <div class="spec">
+      <div class="shell spec-inner">
+        <div><span>年代 / PERIOD</span><strong>北宋</strong></div>
+        <div><span>作者 / ARTIST</span><strong>張擇端</strong></div>
+        <div><span>形式 / FORMAT</span><strong>絹本淡設色手卷</strong></div>
+        <div><span>原作 / COLLECTION</span><strong>北京故宮博物院</strong></div>
+      </div>
+    </div>
+
+    <section id="explore" class="section shell">
+      <div class="section-head">
+        <div><p class="kicker"><b>01</b> / EXPLORE THE SCROLL</p><h2>展開長卷</h2></div>
+        <p>從最右邊的郊外出發。拖曳畫面、滑動縮圖，或直接點選下方站點，看見原畫裡藏著的生活細節。</p>
+      </div>
+      <noscript><p class="note">開啟 JavaScript 可使用長卷互動、故事與測驗。下方全卷仍可左右滑動。</p></noscript>
+      <div class="viewer" aria-label="清明上河圖互動展卷">
+        <div class="view-top">
+          <div class="view-title"><span class="live-dot" aria-hidden="true"></span> 原畫長卷 <small>／ 由右至左閱讀</small></div>
+          <div class="tools" aria-label="畫卷縮放">
+            <button type="button" id="zoom-out" title="縮小" aria-label="縮小">−</button><output id="zoom-label" aria-live="polite">100%</output><button type="button" id="zoom-in" title="放大" aria-label="放大">＋</button><button type="button" id="zoom-reset" class="reset" aria-label="重設畫卷縮放" title="重設縮放">重設</button>
+          </div>
+        </div>
+        <div id="viewport" class="viewport" tabindex="0" aria-label="長卷畫面，可用方向鍵移動" aria-describedby="scroll-hint">
+          <div id="track" class="track"><img class="full-scroll" src="./assets/scroll.webp" width="9604" height="450" alt="張擇端清明上河圖全卷，右端是城郊，中間是汴河與虹橋，左端是城門和街市" draggable="false" loading="lazy"></div>
+        </div>
+        <div class="map-area">
+          <div class="map-label"><span>← 城內</span><span id="scroll-hint">拖曳畫卷・點選標記・用方向鍵移動</span><span>郊外起點 ◉</span></div>
+          <div id="mini-map" class="mini-map">
+            <img src="./assets/overview.webp" width="2400" height="112" alt="" loading="lazy">
+            <span id="map-window" aria-hidden="true"></span>
+            <input id="pan" type="range" min="0" max="1000" value="1000" aria-label="長卷位置，左為城內，右為郊外">
+          </div>
+        </div>
+        <div class="stop-list" id="stops" aria-label="六個畫卷站點"></div>
+      </div>
+      <article id="detail" class="detail" hidden>
+        <div class="detail-text">
+          <p class="kicker" id="detail-label"></p><h3 id="detail-title"></h3><p id="detail-copy"></p>
+          <p class="observe"><span>看一眼</span><span id="detail-clue"></span></p>
+          <div class="step-controls"><button id="prev" type="button">← 上一站</button><button id="next" type="button">下一站 →</button></div>
+        </div>
+        <figure class="detail-figure"><img id="detail-img" src="./assets/country.webp" width="820" height="525" alt="" loading="lazy"><figcaption id="detail-caption"></figcaption></figure>
+        <span id="scene-status" class="sr" role="status"></span>
+      </article>
+    </section>
+
+    <section id="stories" class="stories-wrap">
+      <div class="section shell">
+        <div class="section-head">
+          <div><p class="kicker"><b>02</b> / BEYOND THE PICTURE</p><h2>畫裡的三個故事</h2></div>
+          <p>把《清明上河圖》當成一次散步。這三個角度，讓你再看一次同一張畫時，看見不一樣的東西。</p>
+        </div>
+        <div class="stories">
+          <article class="story"><div class="story-art"><img src="./assets/country.webp" width="820" height="525" alt="城郊的樹林、屋舍與小徑" loading="lazy"><span>01</span></div><div class="story-text"><p class="kicker">手卷怎麼看</p><h3>不是一眼看完，而是一路看過去</h3><p>傳統手卷在桌上由右向左展開，一次只看一段。張擇端把不同視點接在同一卷裡，讓人彷彿從小路走到河岸，再轉進街市。</p><a data-scene="country" href="#explore">從城郊看起 <span aria-hidden="true">↗</span></a></div></article>
+          <article class="story"><div class="story-art"><img src="./assets/bridge.webp" width="820" height="525" alt="虹橋上有行人，橋下有船隻" loading="lazy"><span>02</span></div><div class="story-text"><p class="kicker">汴河交通</p><h3>虹橋下，一艘船正在過橋</h3><p>橋上有人趕路、做買賣，橋下的漕船正放倒桅杆。把視線從橋面移到船邊，你會看到同一座橋對行人和船工有多不同。</p><a data-scene="bridge" href="#explore">去看虹橋 <span aria-hidden="true">↗</span></a></div></article>
+          <article class="story"><div class="story-art"><img src="./assets/market.webp" width="820" height="525" alt="城內街市密集的屋頂、沿街店鋪和行人" loading="lazy"><span>03</span></div><div class="story-text"><p class="kicker">街市日常</p><h3>大店有門面，小攤也有生意</h3><p>看看街邊哪裡是有裝飾的店面，哪裡只有一座棚子。除了車馬和行人，街上各式各樣的店鋪也讓這座城市有了日常生活的樣子。</p><a data-scene="market" href="#explore">走進街市 <span aria-hidden="true">↗</span></a></div></article>
+        </div>
+      </div>
+    </section>
+    <section id="quiz" class="section shell quiz-section">
+      <div class="section-head">
+        <div><p class="kicker"><b>03</b> / LOOK AGAIN</p><h2>眼力小試</h2></div>
+        <p>三道小題，看看剛才的汴京散步留下了什麼印象。答完一題就能看到解析。</p>
+      </div>
+      <div class="quiz-panel" id="quiz-panel">
+        <div class="quiz-index"><span id="q-progress">汴京漫遊 · 小測驗</span><span id="q-score"></span></div>
+        <h3 id="q-title" tabindex="-1">準備好回想剛才的畫面了嗎？</h3>
+        <div id="q-options" class="options"><button type="button" class="btn primary" id="q-start">開始三題挑戰 <span aria-hidden="true">→</span></button></div>
+        <p id="q-feedback" role="status" hidden></p>
+        <button type="button" class="btn primary" id="q-next" hidden>下一題 →</button>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="shell footer-grid">
+      <div><a class="brand" href="#top"><img src="./assets/seal.svg" width="36" height="36" alt=""><span>汴京漫遊<small>THE QINGMING SCROLL</small></span></a><p>以北宋張擇端本為導覽對象的課程數位展覽。</p></div>
+      <div class="sources"><p><b>作品資料</b> <a href="https://www.dpm.org.cn/collection/paint/228226.html" rel="noopener">北京故宮博物院 ↗</a></p><p><b>圖像來源</b> <a href="https://commons.wikimedia.org/wiki/File:Alongtheriver_QingMing.jpg" rel="noopener">Wikimedia Commons（公有領域標記）↗</a></p></div>
+      <a class="back" href="#top">回到卷首 ↑</a>
+    </div>
+    <div class="shell footer-base"><span>115-1 人工智慧及其應用 · 課程專題</span><a href="https://github.com/DreamerForJay/115-1AI" rel="noopener">GitHub 原始碼 ↗</a></div>
+  </footer>
+</body>
+</html>
